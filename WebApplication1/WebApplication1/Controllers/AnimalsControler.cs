@@ -16,7 +16,7 @@ public class AnimalsControler : ControllerBase
     }
 
     [HttpGet]
-    public IActionResult GetAnimals([FromQuery]string orderBy = "Name")
+    public IActionResult GetAnimals([FromQuery] string orderBy = "Name")
     {
         var animals = _animalsService.GetAnimals(orderBy);
         return Ok(animals);
@@ -28,4 +28,19 @@ public class AnimalsControler : ControllerBase
         var affectedCount = _animalsService.CreateAnimal(animal);
         return StatusCode(StatusCodes.Status201Created);
     }
+
+    [HttpPut("/{id:int}")]
+    public IActionResult UpdateAnimal(int id, Animal animal)
+    {
+        var affectedCount = _animalsService.UpdateAnimal(id, animal);
+        return NoContent();
+    }
+
+    [HttpDelete("{id:int}")]
+    public IActionResult DeleteAnimal(int id)
+    {
+        var affectedCount = _animalsService.DeleteAnimal(id);
+        return NoContent();
+    }
+
 }

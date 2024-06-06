@@ -21,4 +21,15 @@ public class AnimalsService : IAnimalsService
     {
         return _animalsRepository.CreateAnimal(animal);
     }
+
+    public int UpdateAnimal(int id,Animal animal)
+    {
+        var affectedCount = _animalsRepository.UpdateAnimal(id,animal);
+        return affectedCount;
+    }
+
+    public int DeleteAnimal(int id)
+    {
+        return _animalsRepository.DeleteAnimal(id);
+    }
 }
